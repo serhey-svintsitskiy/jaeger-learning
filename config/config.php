@@ -12,6 +12,11 @@ $cacheConfig = [
     'config_cache_path' => 'data/cache/config-cache.php',
 ];
 
+// Determine application environment ('dev', 'test' or 'prod').
+if(file_exists('.env')) {
+    (new \Symfony\Component\Dotenv\Dotenv())->load('.env');
+}
+
 $aggregator = new ConfigAggregator([
     \Zend\HttpHandlerRunner\ConfigProvider::class,
     \Zend\Expressive\Router\FastRouteRouter\ConfigProvider::class,
